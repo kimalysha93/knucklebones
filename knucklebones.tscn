@@ -60,7 +60,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScore1" type="Label" parent="GameManager/ScoreLabels"]
+[node name="PlayerScore0" type="Label" parent="GameManager/ScoreLabels"]
 offset_left = 751.5
 offset_top = 590.5
 offset_right = 824.7
@@ -70,7 +70,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScore2" type="Label" parent="GameManager/ScoreLabels"]
+[node name="PlayerScore1" type="Label" parent="GameManager/ScoreLabels"]
 offset_left = 923.4
 offset_top = 590.5
 offset_right = 996.6
@@ -80,7 +80,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScore3" type="Label" parent="GameManager/ScoreLabels"]
+[node name="PlayerScore2" type="Label" parent="GameManager/ScoreLabels"]
 offset_left = 1095.6
 offset_top = 590.5
 offset_right = 1168.8
@@ -110,7 +110,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OppScore1" type="Label" parent="GameManager/ScoreLabels"]
+[node name="OppScore0" type="Label" parent="GameManager/ScoreLabels"]
 offset_left = 751.5
 offset_top = 450.8
 offset_right = 824.7
@@ -120,7 +120,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OppScore2" type="Label" parent="GameManager/ScoreLabels"]
+[node name="OppScore1" type="Label" parent="GameManager/ScoreLabels"]
 offset_left = 923.2
 offset_top = 450.8
 offset_right = 996.4
@@ -130,7 +130,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OppScore3" type="Label" parent="GameManager/ScoreLabels"]
+[node name="OppScore2" type="Label" parent="GameManager/ScoreLabels"]
 offset_left = 1095.4
 offset_top = 450.8
 offset_right = 1168.6

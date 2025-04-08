@@ -50,6 +50,32 @@ var opp_grid = [
 @onready var opp_dice_roll_12: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_12
 @onready var opp_dice_roll_22: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_22
 
+# Player Score Labels
+@onready var player_score_total: Label = $ScoreLabels/PlayerScoreTotal
+@onready var player_score_0: Label = $ScoreLabels/PlayerScore0
+@onready var player_score_1: Label = $ScoreLabels/PlayerScore1
+@onready var player_score_2: Label = $ScoreLabels/PlayerScore2
+
+# Opponent Score Labels
+@onready var opponent_score_total: Label = $ScoreLabels/OpponentScoreTotal
+@onready var opp_score_0: Label = $ScoreLabels/OppScore0
+@onready var opp_score_1: Label = $ScoreLabels/OppScore1
+@onready var opp_score_2: Label = $ScoreLabels/OppScore2
+
+
+# scores
+var die_values = [
+	[0],
+	[0,1,4,9],
+	[0,2,8,18],
+	[0,3,12,27],
+	[0,4,16,36],
+	[0,5,20,45],
+	[0,6,24,54],
+]
+
+
+
 func _ready() -> void:
 	if turn:
 		player_turn()
@@ -86,7 +112,54 @@ func update_all():
 	update_opp_board()
 	# calculate and update column scores and total scores
 		# use dictionary
+	
+	# player column
+	# 0
+	var player_score_col_0 = count_die(player_grid, 0)
+	# 1
+	var player_score_col_1 = count_die(player_grid, 1)
+	# 2
+	var player_score_col_2 = count_die(player_grid, 2)
+	# total score (peak variable name right here...)
+	var player_total_score = player_score_col_0 + player_score_col_1 + player_score_col_2
+	
+	# update player score labels
+	player_score_0.text = str(player_score_col_0)
+	player_score_1.text = str(player_score_col_1)
+	player_score_2.text = str(player_score_col_2)
+	player_score_total.text = str(player_total_score)
+	
+	# opponent column
+	# 0
+	var opp_score_col_0 = count_die(opp_grid, 0)
+	# 1
+	var opp_score_col_1 = count_die(opp_grid, 1)
+	# 2
+	var opp_score_col_2 = count_die(opp_grid, 2)
+	# total score (peak variable name right here...)
+	var opp_total_score = opp_score_col_0 + opp_score_col_1 + opp_score_col_2
+	
+	# update player score labels
+	opp_score_0.text = str(opp_score_col_0)
+	opp_score_1.text = str(opp_score_col_1)
+	opp_score_2.text = str(opp_score_col_2)
+	opponent_score_total.text = str(opp_total_score)
 
+func count_die(grid, col):
+	var player_die_count = {
+		"0":0, "1":0, "2":0, "3":0, "4":0, "5":0, "6":0
+	}
+	
+	var col_total = 0
+	
+	for i in range(3):
+		if grid[i][col] != 0:
+			player_die_count[str(grid[i][col])] += 1
+	
+	for key in player_die_count.keys():
+		col_total += die_values[int(key)][player_die_count[key]]
+	
+	return col_total
 
 
 # rolls the dice for player

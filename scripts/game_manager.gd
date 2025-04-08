@@ -16,6 +16,8 @@ var player_grid = [
 	[0,0,0],
 	[0,0,0],]
 
+# may axis flip (when displaying), bc dice go upwards instead of downward
+# can still code it normally then flip it at the end
 var opp_grid = [
 	[0,0,0],
 	[0,0,0],
@@ -26,6 +28,30 @@ var opp_grid = [
 @onready var opp_dice_roll: Label = $DiceLabels/OppDiceRoll
 @onready var roll_timer: Timer = $"../RollTimer"
 
+# Player Dice Grid
+@onready var player_dice_roll_00: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_00
+@onready var player_dice_roll_10: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_10
+@onready var player_dice_roll_20: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_20
+@onready var player_dice_roll_01: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_01
+@onready var player_dice_roll_11: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_11
+@onready var player_dice_roll_21: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_21
+@onready var player_dice_roll_02: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_02
+@onready var player_dice_roll_12: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_12
+@onready var player_dice_roll_22: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_22
+
+# Opponent Dice Grid
+@onready var opp_dice_roll_00: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_00
+@onready var opp_dice_roll_10: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_10
+@onready var opp_dice_roll_20: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_20
+@onready var opp_dice_roll_01: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_01
+@onready var opp_dice_roll_11: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_11
+@onready var opp_dice_roll_21: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_21
+@onready var opp_dice_roll_02: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_02
+@onready var opp_dice_roll_12: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_12
+@onready var opp_dice_roll_22: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_22
+
+
+
 
 func _ready() -> void:
 	if turn:
@@ -33,39 +59,93 @@ func _ready() -> void:
 	else:
 		opp_turn()
 
+# update player grid
+func update_player_board():
+	player_dice_roll_00.text = str(player_grid[0][0])
+	player_dice_roll_10.text = str(player_grid[1][0])
+	player_dice_roll_20.text = str(player_grid[2][0])
+	player_dice_roll_01.text = str(player_grid[0][1])
+	player_dice_roll_11.text = str(player_grid[1][1])
+	player_dice_roll_21.text = str(player_grid[2][1])
+	player_dice_roll_02.text = str(player_grid[0][2])
+	player_dice_roll_12.text = str(player_grid[1][2])
+	player_dice_roll_22.text = str(player_grid[2][2])
+
+# update opponent grid
+func update_opp_board():
+	opp_dice_roll_00.text = str(opp_grid[0][0])
+	opp_dice_roll_10.text = str(opp_grid[1][0])
+	opp_dice_roll_20.text = str(opp_grid[2][0])
+	opp_dice_roll_01.text = str(opp_grid[0][1])
+	opp_dice_roll_11.text = str(opp_grid[1][1])
+	opp_dice_roll_21.text = str(opp_grid[2][1])
+	opp_dice_roll_02.text = str(opp_grid[0][2])
+	opp_dice_roll_12.text = str(opp_grid[1][2])
+	opp_dice_roll_22.text = str(opp_grid[2][2])
+
+# updates user-facing boards and calculates scores
+func update_all():
+	update_player_board()
+	update_opp_board()
+	# calculate and update column scores and total scores
+		# use dictionary
+
+
+
 # rolls the dice for player
 func player_roll():
 	dice_roll = int(floor(rng.randf_range(1,7)))
 	# instead of changing text, would change sprite here
 	player_dice_roll.text = str(dice_roll)
-	return dice_roll
+	# return dice_roll
 	
 # rolls the dice for opponent
 func opp_roll():
 	dice_roll = int(floor(rng.randf_range(1,7)))
 	# instead of changing text, would change sprite here
 	opp_dice_roll.text = str(dice_roll)
-	return dice_roll
+	# return dice_roll
 
 
 func player_turn():
 	# start dice rolling animation here
 	await get_tree().create_timer(2).timeout
 	var roll = player_roll()
-	player_input = true
+	player_input = true # set to true when player can go
+	'''
 	print("player: "+str(roll))
+	'''
 	
 	# wait for player input to select column
-	
-	
-	# add dice to selected column
-	
-	
-	# calculate and update column score and total score
-	
-	# if board is not full, continue playing
-	opp_turn()
-	# otehrwise, end game and declare winner
+	# _on_player_column_0_input_event function
+
+# update player grid
+
+func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if player_input && event.is_pressed():
+		var available = false
+		# check if spot in column, add dice if available
+		for i in range(3):
+			if player_grid[i][0] == 0:
+				available = true
+				player_grid[i][0] = dice_roll
+				# visual update to player grid
+				break
+
+		# statement only triggers if dice was added to the column
+		if available:
+			# function for eliminating dice on opponent side
+			update_all()
+			# if board is not full, continue playing
+				# set player_input to false so player can't click anymore
+			player_input = false
+			opp_turn()
+				# opp_turn()
+			# otherwise, end game and declare winner
+		pass
+
+	pass # Replace with function body.
+
 
 func opp_turn():
 	# start dice rolling animation here

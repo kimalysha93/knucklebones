@@ -1,13 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccv14bhoxf00s"]
+[gd_scene load_steps=4 format=3 uid="uid://ccv14bhoxf00s"]
 
 [ext_resource type="Texture2D" uid="uid://bjo71cjqgxlhi" path="res://assets/background_interface.png" id="1_n6mj2"]
 [ext_resource type="Script" uid="uid://j30roil5u130" path="res://scripts/game_manager.gd" id="2_0ki74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgjk0"]
+size = Vector2(142.85, 402)
 
 [node name="Knucklebones" type="Node2D"]
 
 [node name="background_interface" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("1_n6mj2")
+
+[node name="PlayerColumns" type="Node" parent="."]
+
+[node name="PlayerColumn0" type="Area2D" parent="PlayerColumns"]
+position = Vector2(717.3, 648)
+
+[node name="PlayerColumnColision0" type="CollisionShape2D" parent="PlayerColumns/PlayerColumn0"]
+position = Vector2(72.275, 199)
+shape = SubResource("RectangleShape2D_xgjk0")
+
+[node name="PlayerColumn1" type="Area2D" parent="PlayerColumns"]
+position = Vector2(889.1, 648)
+
+[node name="PlayerColumnColision1" type="CollisionShape2D" parent="PlayerColumns/PlayerColumn1"]
+position = Vector2(72.275, 199)
+shape = SubResource("RectangleShape2D_xgjk0")
+
+[node name="PlayerColumn2" type="Area2D" parent="PlayerColumns"]
+position = Vector2(1060.6, 648)
+
+[node name="PlayerColumnColision2" type="CollisionShape2D" parent="PlayerColumns/PlayerColumn2"]
+position = Vector2(72.275, 199)
+shape = SubResource("RectangleShape2D_xgjk0")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("2_0ki74")
@@ -128,6 +154,116 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="PlayerGrid" type="Node" parent="GameManager/DiceLabels"]
+
+[node name="PlayerDiceRoll_00" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 741.0
+offset_top = 682.4
+offset_right = 835.5
+offset_bottom = 776.9
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_10" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 741.0
+offset_top = 797.9
+offset_right = 835.5
+offset_bottom = 892.4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_20" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 741.0
+offset_top = 913.5
+offset_right = 835.5
+offset_bottom = 1008.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_01" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 912.8
+offset_top = 682.4
+offset_right = 1007.3
+offset_bottom = 776.9
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_11" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 912.8
+offset_top = 797.9
+offset_right = 1007.3
+offset_bottom = 892.4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_21" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 912.8
+offset_top = 913.5
+offset_right = 1007.3
+offset_bottom = 1008.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_02" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 1084.3
+offset_top = 682.4
+offset_right = 1178.8
+offset_bottom = 776.9
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_12" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 1084.3
+offset_top = 797.9
+offset_right = 1178.8
+offset_bottom = 892.4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerDiceRoll_22" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
+offset_left = 1084.3
+offset_top = 913.5
+offset_right = 1178.8
+offset_bottom = 1008.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="OppDiceRoll" type="Label" parent="GameManager/DiceLabels"]
 offset_left = 1572.7
 offset_top = 155.9
@@ -138,3 +274,115 @@ theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="OppGrid" type="Node" parent="GameManager/DiceLabels/OppDiceRoll"]
+
+[node name="OppDiceRoll_00" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 741.0
+offset_top = 66.4
+offset_right = 835.5
+offset_bottom = 160.9
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_10" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 741.0
+offset_top = 182.0
+offset_right = 835.5
+offset_bottom = 276.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_20" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 741.0
+offset_top = 297.5
+offset_right = 835.5
+offset_bottom = 392.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_01" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 912.8
+offset_top = 66.4
+offset_right = 1007.3
+offset_bottom = 160.9
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_11" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 912.8
+offset_top = 182.0
+offset_right = 1007.3
+offset_bottom = 276.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_21" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 912.8
+offset_top = 297.5
+offset_right = 1007.3
+offset_bottom = 392.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_02" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 1084.3
+offset_top = 66.4
+offset_right = 1178.8
+offset_bottom = 160.9
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_12" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 1084.3
+offset_top = 182.0
+offset_right = 1178.8
+offset_bottom = 276.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OppDiceRoll_22" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+offset_left = 1084.3
+offset_top = 297.5
+offset_right = 1178.8
+offset_bottom = 392.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="input_event" from="PlayerColumns/PlayerColumn0" to="GameManager" method="_on_player_column_0_input_event"]

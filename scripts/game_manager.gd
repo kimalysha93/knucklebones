@@ -50,9 +50,6 @@ var opp_grid = [
 @onready var opp_dice_roll_12: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_12
 @onready var opp_dice_roll_22: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_22
 
-
-
-
 func _ready() -> void:
 	if turn:
 		player_turn()
@@ -110,16 +107,13 @@ func opp_roll():
 func player_turn():
 	# start dice rolling animation here
 	await get_tree().create_timer(2).timeout
-	var roll = player_roll()
+	player_roll()
 	player_input = true # set to true when player can go
-	'''
-	print("player: "+str(roll))
-	'''
 	
 	# wait for player input to select column
 	# _on_player_column_0_input_event function
 
-# update player grid
+
 
 func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if player_input && event.is_pressed():
@@ -140,23 +134,77 @@ func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_id
 				# set player_input to false so player can't click anymore
 			player_input = false
 			opp_turn()
-				# opp_turn()
 			# otherwise, end game and declare winner
-		pass
 
-	pass # Replace with function body.
+
+func _on_player_column_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if player_input && event.is_pressed():
+		var available = false
+		# check if spot in column, add dice if available
+		for i in range(3):
+			if player_grid[i][1] == 0:
+				available = true
+				player_grid[i][1] = dice_roll
+				# visual update to player grid
+				break
+
+		# statement only triggers if dice was added to the column
+		if available:
+			# function for eliminating dice on opponent side
+			update_all()
+			# if board is not full, continue playing
+				# set player_input to false so player can't click anymore
+			player_input = false
+			opp_turn()
+			# otherwise, end game and declare winner
+
+
+func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if player_input && event.is_pressed():
+		var available = false
+		# check if spot in column, add dice if available
+		for i in range(3):
+			if player_grid[i][2] == 0:
+				available = true
+				player_grid[i][2] = dice_roll
+				# visual update to player grid
+				break
+
+		# statement only triggers if dice was added to the column
+		if available:
+			# function for eliminating dice on opponent side
+			update_all()
+			# if board is not full, continue playing
+				# set player_input to false so player can't click anymore
+			player_input = false
+			opp_turn()
+			# otherwise, end game and declare winner
 
 
 func opp_turn():
 	# start dice rolling animation here
 	await get_tree().create_timer(2).timeout
-	var roll = opp_roll()
-	print("opponent: "+str(roll))
+	opp_roll()
+	
+	var broke = false
 	
 	# randomly decide opp column for now (use timer)
+	for i in range(3):
+		for j in range(3):
+			if opp_grid[i][j] == 0:
+				opp_grid[i][j] = dice_roll
+				broke = true
+				break
+		if broke:
+			break
+
+	# function for eliminating dice on opponent side
 	
 	# calculate and update column score and total score
+	update_all()
 	
 	# if board is not full, continue playing
 	player_turn()
 	# otehrwise, end game and declare winner
+
+# update player grid

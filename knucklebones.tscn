@@ -386,3 +386,5 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="input_event" from="PlayerColumns/PlayerColumn0" to="GameManager" method="_on_player_column_0_input_event"]
+[connection signal="input_event" from="PlayerColumns/PlayerColumn1" to="GameManager" method="_on_player_column_1_input_event"]
+[connection signal="input_event" from="PlayerColumns/PlayerColumn2" to="GameManager" method="_on_player_column_2_input_event"]

@@ -75,7 +75,6 @@ var die_values = [
 ]
 
 
-
 func _ready() -> void:
 	if turn:
 		player_turn()
@@ -110,15 +109,10 @@ func update_opp_board():
 func update_all():
 	update_player_board()
 	update_opp_board()
-	# calculate and update column scores and total scores
-		# use dictionary
 	
-	# player column
-	# 0
+	# player column calculations
 	var player_score_col_0 = count_die(player_grid, 0)
-	# 1
 	var player_score_col_1 = count_die(player_grid, 1)
-	# 2
 	var player_score_col_2 = count_die(player_grid, 2)
 	# total score (peak variable name right here...)
 	var player_total_score = player_score_col_0 + player_score_col_1 + player_score_col_2
@@ -129,12 +123,9 @@ func update_all():
 	player_score_2.text = str(player_score_col_2)
 	player_score_total.text = str(player_total_score)
 	
-	# opponent column
-	# 0
+	# opponent column calculations
 	var opp_score_col_0 = count_die(opp_grid, 0)
-	# 1
 	var opp_score_col_1 = count_die(opp_grid, 1)
-	# 2
 	var opp_score_col_2 = count_die(opp_grid, 2)
 	# total score (peak variable name right here...)
 	var opp_total_score = opp_score_col_0 + opp_score_col_1 + opp_score_col_2
@@ -145,6 +136,7 @@ func update_all():
 	opp_score_2.text = str(opp_score_col_2)
 	opponent_score_total.text = str(opp_total_score)
 
+# find score of the provided column
 func count_die(grid, col):
 	var player_die_count = {
 		"0":0, "1":0, "2":0, "3":0, "4":0, "5":0, "6":0
@@ -158,7 +150,6 @@ func count_die(grid, col):
 	
 	for key in player_die_count.keys():
 		col_total += die_values[int(key)][player_die_count[key]]
-	
 	return col_total
 
 
@@ -179,7 +170,7 @@ func opp_roll():
 
 func player_turn():
 	# start dice rolling animation here
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
 	player_roll()
 	player_input = true # set to true when player can go
 	
@@ -201,7 +192,9 @@ func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_id
 
 		# statement only triggers if dice was added to the column
 		if available:
+			
 			# function for eliminating dice on opponent side
+			
 			update_all()
 			# if board is not full, continue playing
 				# set player_input to false so player can't click anymore
@@ -223,7 +216,9 @@ func _on_player_column_1_input_event(viewport: Node, event: InputEvent, shape_id
 
 		# statement only triggers if dice was added to the column
 		if available:
+			
 			# function for eliminating dice on opponent side
+			
 			update_all()
 			# if board is not full, continue playing
 				# set player_input to false so player can't click anymore
@@ -245,7 +240,9 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 
 		# statement only triggers if dice was added to the column
 		if available:
+			
 			# function for eliminating dice on opponent side
+			
 			update_all()
 			# if board is not full, continue playing
 				# set player_input to false so player can't click anymore
@@ -256,7 +253,7 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 
 func opp_turn():
 	# start dice rolling animation here
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
 	opp_roll()
 	
 	var broke = false

@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccv14bhoxf00s"]
+[gd_scene load_steps=4 format=3 uid="uid://ccv14bhoxf00s"]
 
 [ext_resource type="Texture2D" uid="uid://bjo71cjqgxlhi" path="res://assets/background_interface.png" id="1_n6mj2"]
+[ext_resource type="Script" uid="uid://ciqgm1xifc3hs" path="res://scripts/player_dice_roll.gd" id="2_xgjk0"]
+[ext_resource type="Script" uid="uid://d5nttspuo2an" path="res://scripts/opp_dice_roll.gd" id="3_m8h7s"]
 
 [node name="Knucklebones" type="Node2D"]
 
@@ -8,9 +10,9 @@
 position = Vector2(960, 540)
 texture = ExtResource("1_n6mj2")
 
-[node name="Labels" type="Node" parent="."]
+[node name="ScoreLabels" type="Node" parent="."]
 
-[node name="PlayerName" type="Label" parent="Labels"]
+[node name="PlayerName" type="Label" parent="ScoreLabels"]
 offset_left = 158.8
 offset_top = 489.5
 offset_right = 441.4
@@ -20,7 +22,7 @@ text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScoreTotal" type="Label" parent="Labels"]
+[node name="PlayerScoreTotal" type="Label" parent="ScoreLabels"]
 offset_left = 158.8
 offset_top = 540.0
 offset_right = 441.4
@@ -30,7 +32,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScore1" type="Label" parent="Labels"]
+[node name="PlayerScore1" type="Label" parent="ScoreLabels"]
 offset_left = 751.5
 offset_top = 590.5
 offset_right = 824.7
@@ -40,7 +42,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScore2" type="Label" parent="Labels"]
+[node name="PlayerScore2" type="Label" parent="ScoreLabels"]
 offset_left = 923.4
 offset_top = 590.5
 offset_right = 996.6
@@ -50,7 +52,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerScore3" type="Label" parent="Labels"]
+[node name="PlayerScore3" type="Label" parent="ScoreLabels"]
 offset_left = 1095.6
 offset_top = 590.5
 offset_right = 1168.8
@@ -60,7 +62,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OpponentName" type="Label" parent="Labels"]
+[node name="OpponentName" type="Label" parent="ScoreLabels"]
 offset_left = 1478.6
 offset_top = 489.5
 offset_right = 1761.2
@@ -70,7 +72,7 @@ text = "Opponent"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OpponentScoreTotal" type="Label" parent="Labels"]
+[node name="OpponentScoreTotal" type="Label" parent="ScoreLabels"]
 offset_left = 1478.6
 offset_top = 540.0
 offset_right = 1761.2
@@ -80,7 +82,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OppScore1" type="Label" parent="Labels"]
+[node name="OppScore1" type="Label" parent="ScoreLabels"]
 offset_left = 751.5
 offset_top = 450.8
 offset_right = 824.7
@@ -90,7 +92,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OppScore2" type="Label" parent="Labels"]
+[node name="OppScore2" type="Label" parent="ScoreLabels"]
 offset_left = 923.2
 offset_top = 450.8
 offset_right = 996.4
@@ -100,7 +102,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OppScore3" type="Label" parent="Labels"]
+[node name="OppScore3" type="Label" parent="ScoreLabels"]
 offset_left = 1095.4
 offset_top = 450.8
 offset_right = 1168.6
@@ -109,3 +111,29 @@ theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DiceLabels" type="Node" parent="."]
+
+[node name="PlayerDiceRoll" type="Label" parent="DiceLabels"]
+offset_left = 252.9
+offset_top = 827.2
+offset_right = 347.4
+offset_bottom = 921.7
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_xgjk0")
+
+[node name="OppDiceRoll" type="Label" parent="DiceLabels"]
+offset_left = 1572.7
+offset_top = 155.9
+offset_right = 1667.2
+offset_bottom = 250.4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_m8h7s")

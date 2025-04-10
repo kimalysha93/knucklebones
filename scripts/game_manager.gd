@@ -15,6 +15,8 @@ var player_grid = [
 	[0,0,0],
 	[0,0,0],
 	[0,0,0],]
+	
+var player_total_score = 0
 
 # may axis flip (when displaying), bc dice go upwards instead of downward
 # can still code it normally then flip it at the end
@@ -22,6 +24,8 @@ var opp_grid = [
 	[0,0,0],
 	[0,0,0],
 	[0,0,0],]
+
+var opp_total_score = 0
 
 @onready var game_manager: Node = $"."
 @onready var player_dice_roll: Label = $DiceLabels/PlayerDiceRoll
@@ -140,7 +144,7 @@ func update_all():
 	var player_score_col_1 = count_die(player_grid, 1)
 	var player_score_col_2 = count_die(player_grid, 2)
 	# total score (peak variable name right here...)
-	var player_total_score = player_score_col_0 + player_score_col_1 + player_score_col_2
+	player_total_score = player_score_col_0 + player_score_col_1 + player_score_col_2
 	
 	# update player score labels
 	player_score_0.text = str(player_score_col_0)
@@ -153,7 +157,7 @@ func update_all():
 	var opp_score_col_1 = count_die(opp_grid, 1)
 	var opp_score_col_2 = count_die(opp_grid, 2)
 	# total score (peak variable name right here...)
-	var opp_total_score = opp_score_col_0 + opp_score_col_1 + opp_score_col_2
+	opp_total_score = opp_score_col_0 + opp_score_col_1 + opp_score_col_2
 	
 	# update player score labels
 	opp_score_0.text = str(opp_score_col_0)
@@ -229,11 +233,20 @@ func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_id
 			opp_grid = shift_up(opp_grid, 0)
 			
 			update_all()
-			# if board is not full, continue playing
-				# set player_input to false so player can't click anymore
+
+			# set player_input to false so player can't click anymore
 			player_input = false
-			opp_turn()
+			
+			var zeroes_left = true
+			if !player_grid[0].has(0) && !player_grid[1].has(0) && !player_grid[2].has(0):
+				zeroes_left = false
+			
+			# if board is not full, continue playing
+			if zeroes_left:
+				opp_turn()
 			# otherwise, end game and declare winner
+			else:
+				get_node("../GameOver").game_over()
 
 
 func _on_player_column_1_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -257,11 +270,20 @@ func _on_player_column_1_input_event(viewport: Node, event: InputEvent, shape_id
 			# shift up function
 			opp_grid = shift_up(opp_grid, 1)
 			update_all()
-			# if board is not full, continue playing
-				# set player_input to false so player can't click anymore
+			
+			# set player_input to false so player can't click anymore
 			player_input = false
-			opp_turn()
+			
+			var zeroes_left = true
+			if !player_grid[0].has(0) && !player_grid[1].has(0) && !player_grid[2].has(0):
+				zeroes_left = false
+			
+			# if board is not full, continue playing
+			if zeroes_left:
+				opp_turn()
 			# otherwise, end game and declare winner
+			else:
+				get_node("../GameOver").game_over()
 
 
 func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
@@ -289,8 +311,17 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 			# if board is not full, continue playing
 				# set player_input to false so player can't click anymore
 			player_input = false
-			opp_turn()
+			
+			var zeroes_left = true
+			if !player_grid[0].has(0) && !player_grid[1].has(0) && !player_grid[2].has(0):
+				zeroes_left = false
+			
+			# if board is not full, continue playing
+			if zeroes_left:
+				opp_turn()
 			# otherwise, end game and declare winner
+			else:
+				get_node("../GameOver").game_over()
 
 
 func opp_turn():
@@ -322,8 +353,13 @@ func opp_turn():
 	# calculate and update column score and total score
 	update_all()
 	
+	var zeroes_left = true
+	if !opp_grid[0].has(0) && !opp_grid[1].has(0) && !opp_grid[2].has(0):
+		zeroes_left = false
+	
 	# if board is not full, continue playing
-	player_turn()
+	if zeroes_left:
+		player_turn()
 	# otherwise, end game and declare winner
-
-# update player grid
+	else:
+		get_node("../GameOver").game_over()

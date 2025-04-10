@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccv14bhoxf00s"]
+[gd_scene load_steps=5 format=3 uid="uid://ccv14bhoxf00s"]
 
 [ext_resource type="Texture2D" uid="uid://bjo71cjqgxlhi" path="res://assets/background_interface.png" id="1_n6mj2"]
 [ext_resource type="Script" uid="uid://j30roil5u130" path="res://scripts/game_manager.gd" id="2_0ki74"]
+[ext_resource type="Script" uid="uid://crogmong7igih" path="res://scripts/game_over.gd" id="3_m8h7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgjk0"]
 size = Vector2(142.85, 402)
@@ -10,6 +11,7 @@ size = Vector2(142.85, 402)
 
 [node name="background_interface" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
+scale = Vector2(0.993, 1)
 texture = ExtResource("1_n6mj2")
 
 [node name="PlayerColumns" type="Node" parent="."]
@@ -385,6 +387,59 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="GameOver" type="CanvasLayer" parent="."]
+script = ExtResource("3_m8h7s")
+
+[node name="Panel" type="Panel" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -46.0
+offset_right = 330.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -44.0
+offset_right = 131.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "Opponent Wins 11-17"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="GameOver"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -33.0
+offset_right = 322.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Play Again?"
+
 [connection signal="input_event" from="PlayerColumns/PlayerColumn0" to="GameManager" method="_on_player_column_0_input_event"]
 [connection signal="input_event" from="PlayerColumns/PlayerColumn1" to="GameManager" method="_on_player_column_1_input_event"]
 [connection signal="input_event" from="PlayerColumns/PlayerColumn2" to="GameManager" method="_on_player_column_2_input_event"]
+[connection signal="pressed" from="GameOver/PlayAgain" to="GameOver" method="_on_play_again_pressed"]

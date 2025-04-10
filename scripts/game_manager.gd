@@ -81,6 +81,31 @@ func _ready() -> void:
 	else:
 		opp_turn()
 
+# rolls the dice for player
+func player_roll():
+	dice_roll = int(floor(rng.randf_range(1,7)))
+	# dice_roll = int(floor(rng.randf_range(1,3)))
+	# instead of changing text, would change sprite here
+	player_dice_roll.text = str(dice_roll)
+	# return dice_roll
+	
+# rolls the dice for opponent
+func opp_roll():
+	dice_roll = int(floor(rng.randf_range(1,7)))
+	# dice_roll = int(floor(rng.randf_range(1,3)))
+	# instead of changing text, would change sprite here
+	opp_dice_roll.text = str(dice_roll)
+	# return dice_roll
+
+func player_turn():
+	# start dice rolling animation here
+	await get_tree().create_timer(1).timeout
+	player_roll()
+	player_input = true # set to true when player can go
+	
+	# wait for player input to select column
+	# _on_player_column_0_input_event function
+
 # update player grid
 func update_player_board():
 	player_dice_roll_00.text = str(player_grid[0][0])
@@ -153,31 +178,34 @@ func count_die(grid, col):
 	return col_total
 
 
-# rolls the dice for player
-func player_roll():
-	dice_roll = int(floor(rng.randf_range(1,7)))
-	# instead of changing text, would change sprite here
-	player_dice_roll.text = str(dice_roll)
-	# return dice_roll
+# im hard-coding this idc :skull:
+func shift_up(grid, col):
+	# if first and second are 0, swap first with end
+	# 001
+	if grid[0][col] == 0 && grid[1][col] == 0 && grid[2][col] > 0:
+		grid[0][col] = grid[2][col]
+		grid[2][col] = 0
 	
-# rolls the dice for opponent
-func opp_roll():
-	dice_roll = int(floor(rng.randf_range(1,7)))
-	# instead of changing text, would change sprite here
-	opp_dice_roll.text = str(dice_roll)
-	# return dice_roll
-
-
-func player_turn():
-	# start dice rolling animation here
-	await get_tree().create_timer(1.5).timeout
-	player_roll()
-	player_input = true # set to true when player can go
+	# if first is zero, second is not zero, and third is zero, swap first and second
+	# 010
+	if grid[0][col] == 0 && grid[1][col] > 0 && grid[2][col] == 0:
+		grid[0][col] = grid[1][col]
+		grid[1][col] = 0
 	
-	# wait for player input to select column
-	# _on_player_column_0_input_event function
+	# if first is zero, second is not zero, and third is not zero, SHIFT zero to end
+	# 011
+	if grid[0][col] == 0 && grid[1][col] > 0 && grid[2][col] > 0:
+		grid[0][col] = grid[1][col]
+		grid[1][col] = grid[2][col]
+		grid[2][col] = 0
+	
+	# if first is not zero, second is zero, and third is not zero, swap second with third
+	# 101
+	if grid[0][col] > 0 && grid[1][col] == 0 && grid[2][col] > 0:
+		grid[1][col] = grid[2][col]
+		grid[2][col] = 0
 
-
+	return grid
 
 func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if player_input && event.is_pressed():
@@ -194,6 +222,11 @@ func _on_player_column_0_input_event(viewport: Node, event: InputEvent, shape_id
 		if available:
 			
 			# function for eliminating dice on opponent side
+			for i in range(3):
+				if opp_grid[i][0] == dice_roll:
+					opp_grid[i][0] = 0
+			# shift up function
+			opp_grid = shift_up(opp_grid, 0)
 			
 			update_all()
 			# if board is not full, continue playing
@@ -218,7 +251,11 @@ func _on_player_column_1_input_event(viewport: Node, event: InputEvent, shape_id
 		if available:
 			
 			# function for eliminating dice on opponent side
-			
+			for i in range(3):
+				if opp_grid[i][1] == dice_roll:
+					opp_grid[i][1] = 0
+			# shift up function
+			opp_grid = shift_up(opp_grid, 1)
 			update_all()
 			# if board is not full, continue playing
 				# set player_input to false so player can't click anymore
@@ -242,6 +279,11 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 		if available:
 			
 			# function for eliminating dice on opponent side
+			for i in range(3):
+				if opp_grid[i][2] == dice_roll:
+					opp_grid[i][2] = 0
+			# shift up function
+			opp_grid = shift_up(opp_grid, 2)
 			
 			update_all()
 			# if board is not full, continue playing
@@ -253,7 +295,7 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 
 func opp_turn():
 	# start dice rolling animation here
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1).timeout
 	opp_roll()
 	
 	var broke = false
@@ -263,18 +305,25 @@ func opp_turn():
 		for j in range(3):
 			if opp_grid[i][j] == 0:
 				opp_grid[i][j] = dice_roll
+				
+				# function for eliminating dice on player side
+				for k in range(3):
+					if player_grid[k][j] == dice_roll:
+						player_grid[k][j] = 0
+				
+				# shift up function
+				player_grid = shift_up(player_grid, j)
+				# used to break out of nested for loop
 				broke = true
 				break
 		if broke:
 			break
 
-	# function for eliminating dice on opponent side
-	
 	# calculate and update column score and total score
 	update_all()
 	
 	# if board is not full, continue playing
 	player_turn()
-	# otehrwise, end game and declare winner
+	# otherwise, end game and declare winner
 
 # update player grid

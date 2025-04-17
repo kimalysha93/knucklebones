@@ -106,9 +106,6 @@ func player_turn():
 	await get_tree().create_timer(1).timeout
 	player_roll()
 	player_input = true # set to true when player can go
-	
-	# wait for player input to select column
-	# _on_player_column_0_input_event function
 
 # update player grid
 func update_player_board():
@@ -329,26 +326,109 @@ func opp_turn():
 	await get_tree().create_timer(1).timeout
 	opp_roll()
 	
+	# variable to break out of nested loops and prevent dice from being placed multiple times
 	var broke = false
-	
-	# randomly decide opp column for now (use timer)
+
+	# check if player has multiple dice in same column
 	for i in range(3):
-		for j in range(3):
-			if opp_grid[i][j] == 0:
-				opp_grid[i][j] = dice_roll
+		# if 3 in player column
+		if [player_grid[0][i], player_grid[1][i], player_grid[2][i]].count(dice_roll) > 2 and [opp_grid[0][i], opp_grid[1][i], opp_grid[2][i]].count(0) > 0:
+			# remove from player board and shift up
+			if player_grid[0][i] == dice_roll:
+				player_grid[0][i] = 0
+			if player_grid[1][i] == dice_roll:
+				player_grid[1][i] = 0
+			if player_grid[2][i] == dice_roll:
+				player_grid[2][i] = 0
+			player_grid = shift_up(player_grid, i)
 				
-				# function for eliminating dice on player side
-				for k in range(3):
-					if player_grid[k][j] == dice_roll:
-						player_grid[k][j] = 0
+			# place in opp board
+			for j in range(3):
+				if opp_grid[j][i] == 0:
+					opp_grid[j][i] = dice_roll
+					broke = true
+					break
+		# if 2 in player column
+		elif [player_grid[0][i], player_grid[1][i], player_grid[2][i]].count(dice_roll) > 1 and [opp_grid[0][i], opp_grid[1][i], opp_grid[2][i]].count(0) > 0:
+			# remove from player board and shift up
+			if player_grid[0][i] == dice_roll:
+				player_grid[0][i] = 0
+			if player_grid[1][i] == dice_roll:
+				player_grid[1][i] = 0
+			if player_grid[2][i] == dice_roll:
+				player_grid[2][i] = 0
+			player_grid = shift_up(player_grid, i)
 				
-				# shift up function
-				player_grid = shift_up(player_grid, j)
-				# used to break out of nested for loop
-				broke = true
-				break
+			# place in opp board
+			for j in range(3):
+				if opp_grid[j][i] == 0:
+					opp_grid[j][i] = dice_roll
+					broke = true
+					break
+		# if 1 in player column (won't implement so that game doesn't get too difficult/tedious...)
+		
+		# break out of loop
 		if broke:
 			break
+	
+	# check if dice matches dice in current column
+	if !broke:
+		for i in range(3):
+			if [opp_grid[0][i], opp_grid[1][i]].count(dice_roll) == 2 and [opp_grid[0][i], opp_grid[1][i], opp_grid[2][i]].count(0) > 0:
+				# remove from player board and shift up
+				if player_grid[0][i] == dice_roll:
+					player_grid[0][i] = 0
+				if player_grid[1][i] == dice_roll:
+					player_grid[1][i] = 0
+				if player_grid[2][i] == dice_roll:
+					player_grid[2][i] = 0
+				player_grid = shift_up(player_grid, i)
+				
+				# place in opp board
+				for j in range(3):
+					if opp_grid[j][i] == 0:
+						opp_grid[j][i] = dice_roll
+						broke = true
+						break
+			elif [opp_grid[0][i], opp_grid[1][i]].count(dice_roll) == 1 and [opp_grid[0][i], opp_grid[1][i], opp_grid[2][i]].count(0) > 0:
+				# remove from player board and shift up
+				if player_grid[0][i] == dice_roll:
+					player_grid[0][i] = 0
+				if player_grid[1][i] == dice_roll:
+					player_grid[1][i] = 0
+				if player_grid[2][i] == dice_roll:
+					player_grid[2][i] = 0
+				player_grid = shift_up(player_grid, i)
+				
+				# place in opp board
+				for j in range(3):
+					if opp_grid[j][i] == 0:
+						opp_grid[j][i] = dice_roll
+						broke = true
+						break
+			if broke:
+				break
+	
+	# only run if only option
+	if !broke:
+		# randomly decide opp column for now (use timer)
+		for i in range(3):
+			for j in range(3):
+				if opp_grid[i][j] == 0:
+					opp_grid[i][j] = dice_roll
+					
+					# function for eliminating dice on player side
+					for k in range(3):
+						if player_grid[k][j] == dice_roll:
+							player_grid[k][j] = 0
+					
+					# shift up function
+					player_grid = shift_up(player_grid, j)
+					# used to break out of nested for loop
+					broke = true
+					break
+			if broke:
+				break
 
 	# calculate and update column score and total score
 	update_all()

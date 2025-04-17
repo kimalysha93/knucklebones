@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccv14bhoxf00s"]
+[gd_scene load_steps=6 format=3 uid="uid://ccv14bhoxf00s"]
 
 [ext_resource type="Texture2D" uid="uid://bjo71cjqgxlhi" path="res://assets/background_interface.png" id="1_n6mj2"]
 [ext_resource type="Script" uid="uid://j30roil5u130" path="res://scripts/game_manager.gd" id="2_0ki74"]
 [ext_resource type="Script" uid="uid://crogmong7igih" path="res://scripts/game_over.gd" id="3_m8h7s"]
+[ext_resource type="PackedScene" uid="uid://c70n81fi3ef74" path="res://pause_menu.tscn" id="4_0ki74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgjk0"]
 size = Vector2(142.85, 402)
 
 [node name="Knucklebones" type="Node2D"]
+process_mode = 1
 
 [node name="background_interface" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
@@ -38,6 +40,7 @@ position = Vector2(72.275, 199)
 shape = SubResource("RectangleShape2D_xgjk0")
 
 [node name="GameManager" type="Node" parent="."]
+process_mode = 1
 script = ExtResource("2_0ki74")
 
 [node name="ScoreLabels" type="Node" parent="GameManager"]
@@ -438,6 +441,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 28
 text = "Play Again?"
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="PauseMenu" instance=ExtResource("4_0ki74")]
 
 [connection signal="input_event" from="PlayerColumns/PlayerColumn0" to="GameManager" method="_on_player_column_0_input_event"]
 [connection signal="input_event" from="PlayerColumns/PlayerColumn1" to="GameManager" method="_on_player_column_1_input_event"]

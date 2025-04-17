@@ -44,15 +44,15 @@ var opp_total_score = 0
 @onready var player_dice_roll_22: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_22
 
 # Opponent Dice Grid
-@onready var opp_dice_roll_00: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_00
+@onready var opp_dice_roll_00: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_20
 @onready var opp_dice_roll_10: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_10
-@onready var opp_dice_roll_20: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_20
-@onready var opp_dice_roll_01: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_01
+@onready var opp_dice_roll_20: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_00
+@onready var opp_dice_roll_01: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_21
 @onready var opp_dice_roll_11: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_11
-@onready var opp_dice_roll_21: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_21
-@onready var opp_dice_roll_02: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_02
+@onready var opp_dice_roll_21: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_01
+@onready var opp_dice_roll_02: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_22
 @onready var opp_dice_roll_12: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_12
-@onready var opp_dice_roll_22: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_22
+@onready var opp_dice_roll_22: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_02
 
 # Player Score Labels
 @onready var player_score_total: Label = $ScoreLabels/PlayerScoreTotal

@@ -34,15 +34,15 @@ var opp_total_score = 0
 @onready var roll_timer: Timer = $"../RollTimer"
 
 # Player Dice Grid
-@onready var player_dice_roll_00: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_00
-@onready var player_dice_roll_10: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_10
-@onready var player_dice_roll_20: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_20
-@onready var player_dice_roll_01: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_01
-@onready var player_dice_roll_11: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_11
-@onready var player_dice_roll_21: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_21
-@onready var player_dice_roll_02: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_02
-@onready var player_dice_roll_12: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_12
-@onready var player_dice_roll_22: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_22
+@onready var player_dice_roll_00: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_00
+@onready var player_dice_roll_10: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_10
+@onready var player_dice_roll_20: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_20
+@onready var player_dice_roll_01: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_01
+@onready var player_dice_roll_11: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_11
+@onready var player_dice_roll_21: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_21
+@onready var player_dice_roll_02: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_02
+@onready var player_dice_roll_12: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_12
+@onready var player_dice_roll_22: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_22
 
 # Opponent Dice Grid
 @onready var opp_dice_roll_00: Label = $DiceLabels/OppGrid/OppDiceRoll_20
@@ -82,6 +82,16 @@ var die_values = [
 
 func _ready() -> void:
 	player_turn_dice_roll.hide()
+	player_dice_roll_00.hide()
+	player_dice_roll_10.hide()
+	player_dice_roll_20.hide()
+	player_dice_roll_01.hide()
+	player_dice_roll_11.hide()
+	player_dice_roll_21.hide()
+	player_dice_roll_02.hide()
+	player_dice_roll_12.hide()
+	player_dice_roll_22.hide()
+	
 	opp_turn_dice_roll.hide()
 	if turn:
 		player_turn()
@@ -112,18 +122,25 @@ func player_turn():
 	player_roll()
 	player_input = true # set to true when player can go
 
+func board_die_value(board_die, grid, row, col):
+	if grid[row][col] == 0:
+		board_die.hide()
+	else:
+		board_die.show()
+		board_die.get_node("Die").set_frame(grid[row][col]-1)
+
 # update player grid
 func update_player_board():
 	player_turn_dice_roll.hide()
-	player_dice_roll_00.text = str(player_grid[0][0])
-	player_dice_roll_10.text = str(player_grid[1][0])
-	player_dice_roll_20.text = str(player_grid[2][0])
-	player_dice_roll_01.text = str(player_grid[0][1])
-	player_dice_roll_11.text = str(player_grid[1][1])
-	player_dice_roll_21.text = str(player_grid[2][1])
-	player_dice_roll_02.text = str(player_grid[0][2])
-	player_dice_roll_12.text = str(player_grid[1][2])
-	player_dice_roll_22.text = str(player_grid[2][2])
+	board_die_value(player_dice_roll_00, player_grid, 0, 0)
+	board_die_value(player_dice_roll_10, player_grid, 1, 0)
+	board_die_value(player_dice_roll_20, player_grid, 2, 0)
+	board_die_value(player_dice_roll_01, player_grid, 0, 1)
+	board_die_value(player_dice_roll_11, player_grid, 1, 1)
+	board_die_value(player_dice_roll_21, player_grid, 2, 1)
+	board_die_value(player_dice_roll_02, player_grid, 0, 2)
+	board_die_value(player_dice_roll_12, player_grid, 1, 2)
+	board_die_value(player_dice_roll_22, player_grid, 2, 2)
 
 # update opponent grid
 func update_opp_board():

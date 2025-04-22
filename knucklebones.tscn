@@ -150,113 +150,41 @@ vertical_alignment = 1
 
 [node name="PlayerGrid" type="Node" parent="GameManager/DiceLabels"]
 
-[node name="PlayerDiceRoll_00" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 759.0
-offset_top = 682.0
-offset_right = 853.5
-offset_bottom = 776.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_00" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(805, 730)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_10" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 759.0
-offset_top = 797.5
-offset_right = 853.5
-offset_bottom = 892.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_01" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(960, 730)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_20" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 759.0
-offset_top = 913.1
-offset_right = 853.5
-offset_bottom = 1007.6
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_02" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(1115, 730)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_01" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 912.8
-offset_top = 682.4
-offset_right = 1007.3
-offset_bottom = 776.9
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_12" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(1115, 845)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_11" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 912.8
-offset_top = 797.9
-offset_right = 1007.3
-offset_bottom = 892.4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_22" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(1115, 960)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_21" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 912.8
-offset_top = 913.5
-offset_right = 1007.3
-offset_bottom = 1008.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_11" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(960, 845)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_02" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 1067.0
-offset_top = 683.0
-offset_right = 1161.5
-offset_bottom = 777.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_10" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(805, 845)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_12" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 1067.0
-offset_top = 798.5
-offset_right = 1161.5
-offset_bottom = 893.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_20" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(805, 960)
+scale = Vector2(3, 3)
 
-[node name="PlayerDiceRoll_22" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
-offset_left = 1067.0
-offset_top = 914.1
-offset_right = 1161.5
-offset_bottom = 1008.6
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+[node name="PlayerDiceRoll_21" parent="GameManager/DiceLabels/PlayerGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(960, 960)
+scale = Vector2(3, 3)
 
 [node name="PlayerTurnDiceRoll" parent="GameManager/DiceLabels" instance=ExtResource("3_fn8u2")]
 position = Vector2(325, 865)

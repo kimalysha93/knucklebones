@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://3e3pfbrlm7t0" path="res://assets/Board.png" id="1_0ki74"]
 [ext_resource type="Script" uid="uid://j30roil5u130" path="res://scripts/game_manager.gd" id="2_0ki74"]
-[ext_resource type="PackedScene" uid="uid://3semqo5ussj1" path="res://dice.tscn" id="3_fn8u2"]
+[ext_resource type="PackedScene" uid="uid://3semqo5ussj1" path="res://scenes/dice.tscn" id="3_fn8u2"]
 [ext_resource type="Script" uid="uid://crogmong7igih" path="res://scripts/game_over.gd" id="3_m8h7s"]
-[ext_resource type="PackedScene" uid="uid://c70n81fi3ef74" path="res://pause_menu.tscn" id="4_0ki74"]
+[ext_resource type="PackedScene" uid="uid://c70n81fi3ef74" path="res://scenes/pause_menu.tscn" id="4_0ki74"]
 [ext_resource type="FontFile" uid="uid://b7jxo8a2dmm3q" path="res://fonts/ConnectionII.otf" id="5_oypd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgjk0"]

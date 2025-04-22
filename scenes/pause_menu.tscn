@@ -84,8 +84,8 @@ script = ExtResource("1_hdmo1")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.510542
-anchor_top = 0.548704
+anchor_left = 0.502729
+anchor_top = 0.510741
 anchor_right = 0.502729
 anchor_bottom = 0.510741
 offset_left = -183.24

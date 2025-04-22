@@ -1,13 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccv14bhoxf00s"]
+[gd_scene load_steps=9 format=3 uid="uid://ccv14bhoxf00s"]
 
 [ext_resource type="Texture2D" uid="uid://3e3pfbrlm7t0" path="res://assets/Board.png" id="1_0ki74"]
 [ext_resource type="Script" uid="uid://j30roil5u130" path="res://scripts/game_manager.gd" id="2_0ki74"]
 [ext_resource type="PackedScene" uid="uid://3semqo5ussj1" path="res://dice.tscn" id="3_fn8u2"]
 [ext_resource type="Script" uid="uid://crogmong7igih" path="res://scripts/game_over.gd" id="3_m8h7s"]
 [ext_resource type="PackedScene" uid="uid://c70n81fi3ef74" path="res://pause_menu.tscn" id="4_0ki74"]
+[ext_resource type="FontFile" uid="uid://b7jxo8a2dmm3q" path="res://fonts/ConnectionII.otf" id="5_oypd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgjk0"]
 size = Vector2(136.375, 370)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oypd2"]
+bg_color = Color(0.27451, 0.054902, 0.168627, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.192157, 0.0196078, 0.117647, 1)
 
 [node name="Knucklebones" type="Node2D"]
 process_mode = 1
@@ -190,121 +199,50 @@ scale = Vector2(3, 3)
 position = Vector2(325, 865)
 scale = Vector2(3, 3)
 
+[node name="OppGrid" type="Node" parent="GameManager/DiceLabels"]
+
+[node name="OppDiceRoll_00" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(805, 355)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_01" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(960, 355)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_02" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(1115, 355)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_10" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(805, 240)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_11" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(960, 240)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_12" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(1115, 240)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_20" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(805, 125)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_21" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(960, 125)
+scale = Vector2(3, 3)
+
+[node name="OppDiceRoll_22" parent="GameManager/DiceLabels/OppGrid" instance=ExtResource("3_fn8u2")]
+position = Vector2(1115, 125)
+scale = Vector2(3, 3)
+
 [node name="OppTurnDiceRoll" parent="GameManager/DiceLabels" instance=ExtResource("3_fn8u2")]
 position = Vector2(1590, 215)
 scale = Vector2(3, 3)
 
-[node name="OppGrid" type="Node" parent="GameManager/DiceLabels"]
-
-[node name="OppDiceRoll_00" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 756.0
-offset_top = 76.0
-offset_right = 850.5
-offset_bottom = 170.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_10" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 756.0
-offset_top = 191.6
-offset_right = 850.5
-offset_bottom = 286.1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_20" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 756.0
-offset_top = 307.1
-offset_right = 850.5
-offset_bottom = 401.6
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_01" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 913.0
-offset_top = 77.0
-offset_right = 1007.5
-offset_bottom = 171.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_11" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 913.0
-offset_top = 192.6
-offset_right = 1007.5
-offset_bottom = 287.1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_21" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 913.0
-offset_top = 308.1
-offset_right = 1007.5
-offset_bottom = 402.6
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_02" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 1065.0
-offset_top = 75.0
-offset_right = 1159.5
-offset_bottom = 169.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_12" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 1065.0
-offset_top = 190.6
-offset_right = 1159.5
-offset_bottom = 285.1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="OppDiceRoll_22" type="Label" parent="GameManager/DiceLabels/OppGrid"]
-offset_left = 1065.0
-offset_top = 306.1
-offset_right = 1159.5
-offset_bottom = 400.6
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="GameOver" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("3_m8h7s")
 
 [node name="Panel" type="Panel" parent="GameOver"]
@@ -321,6 +259,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oypd2")
 metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="GameOver"]
@@ -335,8 +274,10 @@ offset_right = 131.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_oypd2")
 theme_override_font_sizes/font_size = 40
-text = "Opponent Wins 11-17"
+text = "Opponent Wins  
+11-17"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -357,9 +298,15 @@ theme_override_font_sizes/font_size = 28
 text = "Play Again?"
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
+visible = false
+offset = Vector2(0, 100)
+transform = Transform2D(1, 0, 0, 1, 0, 100)
 
 [node name="PauseMenu" parent="PauseMenu" instance=ExtResource("4_0ki74")]
-visible = false
+offset_left = -3.0
+offset_top = -100.0
+offset_right = -3.0
+offset_bottom = -100.0
 
 [connection signal="input_event" from="PlayerColumns/PlayerColumn0" to="GameManager" method="_on_player_column_0_input_event"]
 [connection signal="input_event" from="PlayerColumns/PlayerColumn1" to="GameManager" method="_on_player_column_1_input_event"]

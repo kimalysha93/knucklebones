@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c70n81fi3ef74"]
+[gd_scene load_steps=3 format=3 uid="uid://c70n81fi3ef74"]
 
 [ext_resource type="Script" uid="uid://d2pomsaxu8ta5" path="res://scripts/pause_menu.gd" id="1_hdmo1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdmo1"]
+bg_color = Color(0.27451, 0.054902, 0.168627, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.192157, 0.0196078, 0.117647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -14,21 +26,22 @@ script = ExtResource("1_hdmo1")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -333.3
-offset_top = -356.1
-offset_right = 333.4
-offset_bottom = 356.1
+anchors_preset = -1
+anchor_left = 0.510542
+anchor_top = 0.548704
+anchor_right = 0.502729
+anchor_bottom = 0.510741
+offset_left = -183.24
+offset_top = -155.6
+offset_right = 183.76
+offset_bottom = 156.4
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_hdmo1")
 
 [node name="Control" type="Control" parent="PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Resume" type="Button" parent="PanelContainer/Control"]
 layout_mode = 1
@@ -37,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.35
-offset_top = -220.1
-offset_right = 127.65
-offset_bottom = -156.1
+offset_left = -128.0
+offset_top = -119.5
+offset_right = 120.0
+offset_bottom = -55.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -54,10 +67,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.35
-offset_top = -92.1
-offset_right = 127.65
-offset_bottom = -28.1
+offset_left = -128.0
+offset_top = -30.5
+offset_right = 120.0
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -71,10 +84,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.05
-offset_top = 36.0
-offset_right = 127.95
-offset_bottom = 100.0
+offset_left = -128.0
+offset_top = 56.5
+offset_right = 120.0
+offset_bottom = 120.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

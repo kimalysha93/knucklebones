@@ -45,15 +45,15 @@ var opp_total_score = 0
 @onready var player_dice_roll_22: Node2D = $DiceLabels/PlayerGrid/PlayerDiceRoll_22
 
 # Opponent Dice Grid
-@onready var opp_dice_roll_00: Label = $DiceLabels/OppGrid/OppDiceRoll_20
-@onready var opp_dice_roll_10: Label = $DiceLabels/OppGrid/OppDiceRoll_10
-@onready var opp_dice_roll_20: Label = $DiceLabels/OppGrid/OppDiceRoll_00
-@onready var opp_dice_roll_01: Label = $DiceLabels/OppGrid/OppDiceRoll_21
-@onready var opp_dice_roll_11: Label = $DiceLabels/OppGrid/OppDiceRoll_11
-@onready var opp_dice_roll_21: Label = $DiceLabels/OppGrid/OppDiceRoll_01
-@onready var opp_dice_roll_02: Label = $DiceLabels/OppGrid/OppDiceRoll_22
-@onready var opp_dice_roll_12: Label = $DiceLabels/OppGrid/OppDiceRoll_12
-@onready var opp_dice_roll_22: Label = $DiceLabels/OppGrid/OppDiceRoll_02
+@onready var opp_dice_roll_00: Node2D = $DiceLabels/OppGrid/OppDiceRoll_00
+@onready var opp_dice_roll_10: Node2D = $DiceLabels/OppGrid/OppDiceRoll_10
+@onready var opp_dice_roll_20: Node2D = $DiceLabels/OppGrid/OppDiceRoll_20
+@onready var opp_dice_roll_01: Node2D = $DiceLabels/OppGrid/OppDiceRoll_01
+@onready var opp_dice_roll_11: Node2D = $DiceLabels/OppGrid/OppDiceRoll_11
+@onready var opp_dice_roll_21: Node2D = $DiceLabels/OppGrid/OppDiceRoll_21
+@onready var opp_dice_roll_02: Node2D = $DiceLabels/OppGrid/OppDiceRoll_02
+@onready var opp_dice_roll_12: Node2D = $DiceLabels/OppGrid/OppDiceRoll_12
+@onready var opp_dice_roll_22: Node2D = $DiceLabels/OppGrid/OppDiceRoll_22
 
 # Player Score Labels
 @onready var player_score_total: Label = $ScoreLabels/PlayerScoreTotal
@@ -93,6 +93,16 @@ func _ready() -> void:
 	player_dice_roll_22.hide()
 	
 	opp_turn_dice_roll.hide()
+	opp_dice_roll_00.hide()
+	opp_dice_roll_10.hide()
+	opp_dice_roll_20.hide()
+	opp_dice_roll_01.hide()
+	opp_dice_roll_11.hide()
+	opp_dice_roll_21.hide()
+	opp_dice_roll_02.hide()
+	opp_dice_roll_12.hide()
+	opp_dice_roll_22.hide()
+	
 	if turn:
 		player_turn()
 	else:
@@ -145,15 +155,15 @@ func update_player_board():
 # update opponent grid
 func update_opp_board():
 	opp_turn_dice_roll.hide()
-	opp_dice_roll_00.text = str(opp_grid[0][0])
-	opp_dice_roll_10.text = str(opp_grid[1][0])
-	opp_dice_roll_20.text = str(opp_grid[2][0])
-	opp_dice_roll_01.text = str(opp_grid[0][1])
-	opp_dice_roll_11.text = str(opp_grid[1][1])
-	opp_dice_roll_21.text = str(opp_grid[2][1])
-	opp_dice_roll_02.text = str(opp_grid[0][2])
-	opp_dice_roll_12.text = str(opp_grid[1][2])
-	opp_dice_roll_22.text = str(opp_grid[2][2])
+	board_die_value(opp_dice_roll_00, opp_grid, 0, 0)
+	board_die_value(opp_dice_roll_10, opp_grid, 1, 0)
+	board_die_value(opp_dice_roll_20, opp_grid, 2, 0)
+	board_die_value(opp_dice_roll_01, opp_grid, 0, 1)
+	board_die_value(opp_dice_roll_11, opp_grid, 1, 1)
+	board_die_value(opp_dice_roll_21, opp_grid, 2, 1)
+	board_die_value(opp_dice_roll_02, opp_grid, 0, 2)
+	board_die_value(opp_dice_roll_12, opp_grid, 1, 2)
+	board_die_value(opp_dice_roll_22, opp_grid, 2, 2)
 
 # updates user-facing boards and calculates scores
 func update_all():

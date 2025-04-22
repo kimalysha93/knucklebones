@@ -25,6 +25,10 @@ window/size/mode=3
 
 project/assembly_name="Knucklebones"
 
+[gui]
+
+theme/custom_font="uid://b7jxo8a2dmm3q"
+
 [input]
 
 esc={

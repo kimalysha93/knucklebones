@@ -13,10 +13,10 @@ func game_over():
 	var player_score = int(get_node("../GameManager/ScoreLabels/PlayerScoreTotal").text)
 	var opponent_score = int(get_node("../GameManager/ScoreLabels/OpponentScoreTotal").text)
 	if player_score > opponent_score:
-		label.text = "Player Wins "+str(player_score)+" - "+str(opponent_score)
+		label.text = "Player Wins\n"+str(player_score)+"  -  "+str(opponent_score)
 	if opponent_score > player_score:
-		label.text = "Opponent Wins "+str(opponent_score)+" - "+str(player_score)
+		label.text = "Opponent Wins\n"+str(opponent_score)+"  -  "+str(player_score)
 	if player_score == opponent_score:
-		label.text = "It's a Draw "+str(player_score)+" - "+str(opponent_score)
+		label.text = "It's a Draw\n"+str(player_score)+"  -  "+str(opponent_score)
 
 	self.show()

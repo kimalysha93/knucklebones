@@ -13,9 +13,9 @@ config_version=5
 config/name="Knucklebones"
 run/main_scene="uid://ccv14bhoxf00s"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://r312wvovtqgt"
-config/macos_native_icon="uid://r312wvovtqgt"
-config/windows_native_icon="uid://r312wvovtqgt"
+config/icon="uid://7qmry1kjeu5e"
+config/macos_native_icon="uid://7qmry1kjeu5e"
+config/windows_native_icon="uid://7qmry1kjeu5e"
 
 [display]
 

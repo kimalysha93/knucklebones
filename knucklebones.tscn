@@ -148,19 +148,6 @@ vertical_alignment = 1
 
 [node name="DiceLabels" type="Node" parent="GameManager"]
 
-[node name="PlayerDiceRoll" type="Label" parent="GameManager/DiceLabels"]
-visible = false
-offset_left = 280.0
-offset_top = 816.0
-offset_right = 374.5
-offset_bottom = 910.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="PlayerGrid" type="Node" parent="GameManager/DiceLabels"]
 
 [node name="PlayerDiceRoll_00" type="Label" parent="GameManager/DiceLabels/PlayerGrid"]
@@ -271,20 +258,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll" type="Label" parent="GameManager/DiceLabels"]
-offset_left = 1545.0
-offset_top = 162.0
-offset_right = 1639.5
-offset_bottom = 256.5
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="PlayerTurnDiceRoll" parent="GameManager/DiceLabels" instance=ExtResource("3_fn8u2")]
+position = Vector2(325, 865)
+scale = Vector2(3, 3)
 
-[node name="OppGrid" type="Node" parent="GameManager/DiceLabels/OppDiceRoll"]
+[node name="OppTurnDiceRoll" parent="GameManager/DiceLabels" instance=ExtResource("3_fn8u2")]
+position = Vector2(1590, 215)
+scale = Vector2(3, 3)
 
-[node name="OppDiceRoll_00" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppGrid" type="Node" parent="GameManager/DiceLabels"]
+
+[node name="OppDiceRoll_00" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 756.0
 offset_top = 76.0
 offset_right = 850.5
@@ -296,7 +280,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_10" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_10" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 756.0
 offset_top = 191.6
 offset_right = 850.5
@@ -308,7 +292,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_20" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_20" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 756.0
 offset_top = 307.1
 offset_right = 850.5
@@ -320,7 +304,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_01" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_01" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 913.0
 offset_top = 77.0
 offset_right = 1007.5
@@ -332,7 +316,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_11" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_11" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 913.0
 offset_top = 192.6
 offset_right = 1007.5
@@ -344,7 +328,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_21" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_21" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 913.0
 offset_top = 308.1
 offset_right = 1007.5
@@ -356,7 +340,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_02" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_02" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 1065.0
 offset_top = 75.0
 offset_right = 1159.5
@@ -368,7 +352,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_12" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_12" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 1065.0
 offset_top = 190.6
 offset_right = 1159.5
@@ -380,7 +364,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="OppDiceRoll_22" type="Label" parent="GameManager/DiceLabels/OppDiceRoll/OppGrid"]
+[node name="OppDiceRoll_22" type="Label" parent="GameManager/DiceLabels/OppGrid"]
 offset_left = 1065.0
 offset_top = 306.1
 offset_right = 1159.5
@@ -391,10 +375,6 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="PlayerTurnDiceRoll" parent="GameManager/DiceLabels" instance=ExtResource("3_fn8u2")]
-position = Vector2(325, 865)
-scale = Vector2(3, 3)
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 script = ExtResource("3_m8h7s")

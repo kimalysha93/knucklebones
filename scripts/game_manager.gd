@@ -29,6 +29,7 @@ var opp_total_score = 0
 
 @onready var game_manager: Node = $"."
 @onready var player_turn_dice_roll: Node2D = $DiceLabels/PlayerTurnDiceRoll
+@onready var opp_turn_dice_roll: Node2D = $DiceLabels/OppTurnDiceRoll
 @onready var opp_dice_roll: Label = $DiceLabels/OppDiceRoll
 @onready var roll_timer: Timer = $"../RollTimer"
 
@@ -44,15 +45,15 @@ var opp_total_score = 0
 @onready var player_dice_roll_22: Label = $DiceLabels/PlayerGrid/PlayerDiceRoll_22
 
 # Opponent Dice Grid
-@onready var opp_dice_roll_00: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_20
-@onready var opp_dice_roll_10: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_10
-@onready var opp_dice_roll_20: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_00
-@onready var opp_dice_roll_01: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_21
-@onready var opp_dice_roll_11: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_11
-@onready var opp_dice_roll_21: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_01
-@onready var opp_dice_roll_02: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_22
-@onready var opp_dice_roll_12: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_12
-@onready var opp_dice_roll_22: Label = $DiceLabels/OppDiceRoll/OppGrid/OppDiceRoll_02
+@onready var opp_dice_roll_00: Label = $DiceLabels/OppGrid/OppDiceRoll_20
+@onready var opp_dice_roll_10: Label = $DiceLabels/OppGrid/OppDiceRoll_10
+@onready var opp_dice_roll_20: Label = $DiceLabels/OppGrid/OppDiceRoll_00
+@onready var opp_dice_roll_01: Label = $DiceLabels/OppGrid/OppDiceRoll_21
+@onready var opp_dice_roll_11: Label = $DiceLabels/OppGrid/OppDiceRoll_11
+@onready var opp_dice_roll_21: Label = $DiceLabels/OppGrid/OppDiceRoll_01
+@onready var opp_dice_roll_02: Label = $DiceLabels/OppGrid/OppDiceRoll_22
+@onready var opp_dice_roll_12: Label = $DiceLabels/OppGrid/OppDiceRoll_12
+@onready var opp_dice_roll_22: Label = $DiceLabels/OppGrid/OppDiceRoll_02
 
 # Player Score Labels
 @onready var player_score_total: Label = $ScoreLabels/PlayerScoreTotal
@@ -80,6 +81,8 @@ var die_values = [
 
 
 func _ready() -> void:
+	player_turn_dice_roll.hide()
+	opp_turn_dice_roll.hide()
 	if turn:
 		player_turn()
 	else:
@@ -96,10 +99,10 @@ func player_roll():
 # rolls the dice for opponent
 func opp_roll():
 	dice_roll = int(floor(rng.randf_range(1,7)))
-	# dice_roll = int(floor(rng.randf_range(1,3)))
-	# instead of changing text, would change sprite here
-	opp_dice_roll.text = str(dice_roll)
-	# return dice_roll
+	# stop dice roll animation here
+	opp_turn_dice_roll.get_node("AnimationPlayer").pause()
+	# change sprite here
+	opp_turn_dice_roll.get_node("Die").set_frame(dice_roll-1)
 
 func player_turn():
 	# start dice rolling animation here
@@ -124,6 +127,7 @@ func update_player_board():
 
 # update opponent grid
 func update_opp_board():
+	opp_turn_dice_roll.hide()
 	opp_dice_roll_00.text = str(opp_grid[0][0])
 	opp_dice_roll_10.text = str(opp_grid[1][0])
 	opp_dice_roll_20.text = str(opp_grid[2][0])
@@ -326,8 +330,11 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 
 func opp_turn():
 	# start dice rolling animation here
+	opp_turn_dice_roll.show()
+	opp_turn_dice_roll.get_node("AnimationPlayer").play("roll_die")
 	await get_tree().create_timer(1.5).timeout
 	opp_roll()
+	await get_tree().create_timer(1).timeout
 	
 	# variable to break out of nested loops and prevent dice from being placed multiple times
 	var broke = false

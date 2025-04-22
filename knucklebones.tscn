@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccv14bhoxf00s"]
+[gd_scene load_steps=7 format=3 uid="uid://ccv14bhoxf00s"]
 
 [ext_resource type="Texture2D" uid="uid://3e3pfbrlm7t0" path="res://assets/Board.png" id="1_0ki74"]
 [ext_resource type="Script" uid="uid://j30roil5u130" path="res://scripts/game_manager.gd" id="2_0ki74"]
+[ext_resource type="PackedScene" uid="uid://3semqo5ussj1" path="res://dice.tscn" id="3_fn8u2"]
 [ext_resource type="Script" uid="uid://crogmong7igih" path="res://scripts/game_over.gd" id="3_m8h7s"]
 [ext_resource type="PackedScene" uid="uid://c70n81fi3ef74" path="res://pause_menu.tscn" id="4_0ki74"]
 
@@ -148,6 +149,7 @@ vertical_alignment = 1
 [node name="DiceLabels" type="Node" parent="GameManager"]
 
 [node name="PlayerDiceRoll" type="Label" parent="GameManager/DiceLabels"]
+visible = false
 offset_left = 280.0
 offset_top = 816.0
 offset_right = 374.5
@@ -390,6 +392,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="PlayerTurnDiceRoll" parent="GameManager/DiceLabels" instance=ExtResource("3_fn8u2")]
+position = Vector2(325, 865)
+scale = Vector2(3, 3)
+
 [node name="GameOver" type="CanvasLayer" parent="."]
 script = ExtResource("3_m8h7s")
 
@@ -445,6 +451,7 @@ text = "Play Again?"
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="PauseMenu" instance=ExtResource("4_0ki74")]
+visible = false
 
 [connection signal="input_event" from="PlayerColumns/PlayerColumn0" to="GameManager" method="_on_player_column_0_input_event"]
 [connection signal="input_event" from="PlayerColumns/PlayerColumn1" to="GameManager" method="_on_player_column_1_input_event"]

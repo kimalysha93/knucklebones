@@ -28,7 +28,7 @@ var opp_grid = [
 var opp_total_score = 0
 
 @onready var game_manager: Node = $"."
-@onready var player_dice_roll: Label = $DiceLabels/PlayerDiceRoll
+@onready var player_turn_dice_roll: Node2D = $DiceLabels/PlayerTurnDiceRoll
 @onready var opp_dice_roll: Label = $DiceLabels/OppDiceRoll
 @onready var roll_timer: Timer = $"../RollTimer"
 
@@ -88,10 +88,10 @@ func _ready() -> void:
 # rolls the dice for player
 func player_roll():
 	dice_roll = int(floor(rng.randf_range(1,7)))
-	# dice_roll = int(floor(rng.randf_range(1,3)))
-	# instead of changing text, would change sprite here
-	player_dice_roll.text = str(dice_roll)
-	# return dice_roll
+	# stop dice roll animation here
+	player_turn_dice_roll.get_node("AnimationPlayer").pause()
+	# change sprite here
+	player_turn_dice_roll.get_node("Die").set_frame(dice_roll-1)
 	
 # rolls the dice for opponent
 func opp_roll():
@@ -103,12 +103,15 @@ func opp_roll():
 
 func player_turn():
 	# start dice rolling animation here
-	await get_tree().create_timer(1).timeout
+	player_turn_dice_roll.show()
+	player_turn_dice_roll.get_node("AnimationPlayer").play("roll_die")
+	await get_tree().create_timer(1.5).timeout
 	player_roll()
 	player_input = true # set to true when player can go
 
 # update player grid
 func update_player_board():
+	player_turn_dice_roll.hide()
 	player_dice_roll_00.text = str(player_grid[0][0])
 	player_dice_roll_10.text = str(player_grid[1][0])
 	player_dice_roll_20.text = str(player_grid[2][0])
@@ -323,7 +326,7 @@ func _on_player_column_2_input_event(viewport: Node, event: InputEvent, shape_id
 
 func opp_turn():
 	# start dice rolling animation here
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.5).timeout
 	opp_roll()
 	
 	# variable to break out of nested loops and prevent dice from being placed multiple times

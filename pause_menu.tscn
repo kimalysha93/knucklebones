@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c70n81fi3ef74"]
+[gd_scene load_steps=9 format=3 uid="uid://c70n81fi3ef74"]
 
 [ext_resource type="Script" uid="uid://d2pomsaxu8ta5" path="res://scripts/pause_menu.gd" id="1_hdmo1"]
 
@@ -9,6 +9,63 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.192157, 0.0196078, 0.117647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2nc7s"]
+bg_color = Color(0.121569, 0.0196078, 0.0627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwcfo"]
+bg_color = Color(0.0745098, 0.00784314, 0.0313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.121569, 0.0196078, 0.0627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3xb4"]
+bg_color = Color(0.121569, 0.0196078, 0.0627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05uyy"]
+bg_color = Color(0.0745098, 0.00784314, 0.0313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.121569, 0.0196078, 0.0627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxa3g"]
+bg_color = Color(0.121569, 0.0196078, 0.0627451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p81d2"]
+bg_color = Color(0.0745098, 0.00784314, 0.0313726, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.121569, 0.0196078, 0.0627451, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -58,6 +115,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_2nc7s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_nwcfo")
 text = "Resume"
 
 [node name="Restart" type="Button" parent="PanelContainer/Control"]
@@ -75,6 +134,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_d3xb4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_05uyy")
 text = "Restart"
 
 [node name="Quit" type="Button" parent="PanelContainer/Control"]
@@ -92,6 +153,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/hover = SubResource("StyleBoxFlat_mxa3g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_p81d2")
 text = "Quit"
 
 [connection signal="pressed" from="PanelContainer/Control/Resume" to="." method="_on_resume_pressed"]

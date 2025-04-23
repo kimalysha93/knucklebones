@@ -11,7 +11,7 @@ Knucklebones is a Dice minigame found in [Cult of the Lamb](https://store.steamp
 
 ## Features
 - Player can place a die on their grid (bottom one) during their turn
-- When A die is eliminated from the opposing side, the remaining dice in the column will shift towards the center
+- When a die is eliminated from the opposing side, the remaining dice in the column will shift towards the center
 - Implemented a basic Opponent AI
 
 ## About the Assets
